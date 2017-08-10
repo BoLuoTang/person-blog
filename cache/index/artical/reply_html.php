@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>帖子</title>
+	<meta charset='utf-8' />
+
+	<link rel="stylesheet" href="public/md/examples/css/style.css" />
+    <link rel="stylesheet" href="public/md/css/editormd.preview.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+
+
+	<link rel="stylesheet" href="public/editor/css/editormd.css" />
+		<script src="public/editor/js/jquery.min.js"></script>
+		<script src="public/editor/editormd.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				testEditor = editormd("test-editormd", {
+						width   : "90%",
+						height  : 300,
+						syncScrolling : "single",
+						path    : "public/editor/lib/"
+					});
+
+			});
+		</script>
+	<style type="text/css">
+		.p1 {
+			font-size: 20px;
+			font-weight: bold;
+		}
+		a {
+			text-decoration: none;
+			margin-left:-50px;
+		}
+		.a1{
+			margin-top:50px;
+			margin-left:-1000px;
+		}
+		.editormd-html-preview {
+            width: 90%;
+            margin: 0 auto;
+        }
+        table{
+        	margin-left:90px;
+        	width:85%;
+        }
+
+
+	</style>
+</head>
+<body>
+	<div class ='a1'><a href='index.php'>返回</a></div>
+	<div id="layout">
+		    <div id="test-editormd-view2">
+		    <?php foreach($result as $value):?>
+		        <textarea id="append-test" style="display:none;">
+		        	标题：<?=$value['title'];?>
+		        	内容：<?=$value['content'];?>
+		        </textarea>
+		    <?php endforeach;?> 	
+		    </div>
+	</div>
+		<table border='1' cellpadding="0" cellspacing="0" width='800' align='center'>
+			<?php if(!empty($res)):?>
+			<?php foreach($res as $val):?>
+					<tr>
+						<td align='center'>回复</td>
+						<td><p class='p2'>&emsp;&emsp;<?=$val['content'];?></p></td>
+						<td><p class='p2'>&emsp;&emsp;<?=date("Y-m-d H:i:s",($val['addtime']));?></p></td>
+					</tr>
+			<?php endforeach;?>
+			<?php endif;?>
+			<tr>
+				<td align='center'>用户</td>
+				<td colspan="2">
+					<br />
+					<form action="index.php?c=artical&a=doReply&tid=<?=$result[0]['id'];?>" method='post'>
+					<div id="test-editormd">
+					<textarea style="display:none;" name="content"></textarea>
+					</div>
+					&emsp;&emsp;<input type='submit' value='提交' name='tijiao'><br />
+					<br />
+		 		</td>
+			</tr>
+
+	</form>
+
+	<script src="public/md/examples/js/jquery.min.js"></script>
+	<script src="public/md/lib/marked.min.js"></script>
+	<script src="public/md/lib/prettify.min.js"></script>
+
+	<script src="public/md/lib/raphael.min.js"></script>
+	<script src="public/md/lib/underscore.min.js"></script>
+	<script src="public/md/lib/sequence-diagram.min.js"></script>
+	<script src="public/md/lib/flowchart.min.js"></script>
+	<script src="public/md/lib/jquery.flowchart.min.js"></script>
+
+	<script src="public/md/editormd.js"></script>
+	<script type="text/javascript">
+	    $(function() {
+	        var testEditormdView2;
+	        testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+	            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+	            emoji           : true,
+	            taskList        : true,
+	            tex             : true,  // 默认不解析
+	            flowChart       : true,  // 默认不解析
+	            sequenceDiagram : true,  // 默认不解析
+	        });
+	    });
+	</script>
+
+
+
+</body>
+</html>
